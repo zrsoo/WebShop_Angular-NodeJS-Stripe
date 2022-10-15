@@ -13,7 +13,7 @@
             </td>
             <!--Footer of the table-->
             <td mat-footer-cell *matFooterCellDef>
-                <button mat-raised-button routerLink="/home">Continue shopping</button>
+                <button mat-raised-button routerLink="/home" color="primary">Continue shopping</button>
             </td>
         </ng-container>
 
@@ -22,7 +22,7 @@
             <th mat-header-cell *matHeaderCellDef>Name</th>
             <!--Product row-->
             <td mat-cell *matCellDef="let element">
-                <p class="truncate max-w-xs">{{element.name}}</p>
+                <p class="truncate max-w-xs block">{{element.name}}</p>
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
@@ -42,7 +42,13 @@
             <th mat-header-cell *matHeaderCellDef>Quantity</th>
             <!--Product row-->
             <td mat-cell *matCellDef="let element">
-                <p>{{element.quantity}}</p>
+                <button mat-icon-button>
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <span>{{element.quantity}}</span>
+                <button mat-icon-button>
+                    <mat-icon>add</mat-icon>
+                </button>
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
@@ -52,7 +58,7 @@
             <th mat-header-cell *matHeaderCellDef>Total</th>
             <!--Product row-->
             <td mat-cell *matCellDef="let element">
-                <p>{{element.total}}</p>
+                <p>{{getTotalForProduct(element) | currency: "RON"}}</p>
             </td>
 
             <td mat-footer-cell *matFooterCellDef>
@@ -71,9 +77,16 @@
             </th>
             <!--Product row-->
             <td mat-cell *matCellDef="let element">
+                <button mat-mini-fab color="warn" class="float-right">
+                    <mat-icon>close</mat-icon>
+                </button>
             </td>
             <!--Footer of the table-->
-            <td mat-footer-cell *matFooterCellDef></td>
+            <td mat-footer-cell *matFooterCellDef>
+                <button style="background: #00b300; color: #fff" mat-raised-button class="float-right">
+                    Proceed to checkout
+                </button>
+            </td>
         </ng-container>
 
         <!--Three types of rows: first - header, second - regular row, third - footer-->

@@ -67,4 +67,7 @@ export class CartComponent implements OnInit {
           .reduce((prev, current) => prev + current, 0);
   }
 
+  getTotalForProduct(item : CartItem) : number {
+      return item.price * item.quantity;
+  }
 }
