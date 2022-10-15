@@ -4,7 +4,8 @@
         <div>
             <!--The button over the menu-->
             <button mat-button [matMenuTriggerFor]="sortByMenu">
-                Sort by {{sort}}
+                Sort by {{ sort }}
+                <mat-icon>expand_more</mat-icon>
             </button>
 
             <!--The menu, with 2 buttons that change the sorting order-->
@@ -12,6 +13,39 @@
                 <button (click)="onSortUpdated('descending')" mat-menu-item>descending</button>
                 <button (click)="onSortUpdated('ascending')" mat-menu-item>ascending</button>
             </mat-menu>
+        </div>
+
+        <!--Div containing the number of items on page menu and the layout settings buttons-->
+        <div class="flex items-center">
+            <!--The menu that specifies the number of items on a page-->
+            <div>
+                <!--Button that expands the menu-->
+                <button mat-button [matMenuTriggerFor]="menu">
+                    Show {{ itemsShowCount }}
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <!--The menu itself-->
+                <mat-menu #menu="matMenu">
+                    <button (click)="onItemsUpdated(12)" mat-menu-item>12</button>
+                    <button (click)="onItemsUpdated(24)" mat-menu-item>24</button>
+                    <button (click)="onItemsUpdated(36)" mat-menu-item>36</button>
+                </mat-menu>
+            </div>
+
+            <!--Layout setting number 1, 1 item per row-->
+            <button (click)="onColumnsUpdated(1)">
+                <mat-icon>view_list</mat-icon>
+            </button>
+
+            <!--Layout setting number 2, 3 items per row-->
+            <button (click)="onColumnsUpdated(3)">
+                <mat-icon>view_module</mat-icon>
+            </button>
+
+            <!--Layout setting number 3, 4 items per row-->
+            <button (click)="onColumnsUpdated(4)">
+                <mat-icon>view_comfy</mat-icon>
+            </button>
         </div>
     </div>
 </mat-card>
