@@ -1,0 +1,95 @@
+<!--Create material table that displays all information necessary for user before actually buying the products-->
+<!--Wrapper-->
+<mat-card *ngIf="cart.items.length" class="max-w-7xl mx-auto">
+    <table mat-table [dataSource]="dataSource"
+           class="mat-elevation-z8 w-full">
+        <!--Container of header, product rows and footer, stands for ONE column, so make one for each column-->
+        <ng-container matColumnDef="product">
+            <!--Header of the table-->
+            <th mat-header-cell *matHeaderCellDef>Product</th>
+            <!--Product row-->
+            <td mat-cell *matCellDef="let element">
+                <img src="{{element.product}}" alt="product" class="w-[100px] my-5"/>
+            </td>
+            <!--Footer of the table-->
+            <td mat-footer-cell *matFooterCellDef>
+                <button mat-raised-button routerLink="/home">Continue shopping</button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <!--Header of the table-->
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <!--Product row-->
+            <td mat-cell *matCellDef="let element">
+                <p class="truncate max-w-xs">{{element.name}}</p>
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <!--Header of the table-->
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <!--Product row-->
+            <td mat-cell *matCellDef="let element">
+                <p>{{element.price | currency: "RON"}}</p>
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+            <!--Header of the table-->
+            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+            <!--Product row-->
+            <td mat-cell *matCellDef="let element">
+                <p>{{element.quantity}}</p>
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <!--Header of the table-->
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <!--Product row-->
+            <td mat-cell *matCellDef="let element">
+                <p>{{element.total}}</p>
+            </td>
+
+            <td mat-footer-cell *matFooterCellDef>
+                <span class="font-bold py-5 block">
+                    {{getTotal(cart.items) | currency: "RON"}}
+                </span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <!--Header of the table-->
+            <th mat-header-cell *matHeaderCellDef>
+                <button mat-raised-button color="warn" class="float-right">
+                    Clear All
+                </button>
+            </th>
+            <!--Product row-->
+            <td mat-cell *matCellDef="let element">
+            </td>
+            <!--Footer of the table-->
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <!--Three types of rows: first - header, second - regular row, third - footer-->
+        <!--Header-->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <!--Row-->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <!--Footer-->
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table>
+</mat-card>
+
+<!--If cart is empty, display message and show button to return to home-->
+<mat-card *ngIf="!cart.items.length" class="max-w-7xl mx-auto">
+    <p>
+        Your cart is empty.
+        <button mat-raised-button routerLink="/home">Start shopping</button>
+    </p>
+</mat-card>
