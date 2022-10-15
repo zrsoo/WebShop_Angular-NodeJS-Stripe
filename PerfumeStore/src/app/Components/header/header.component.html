@@ -1,8 +1,59 @@
 <mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
     <a routerLink="home">Code with Zaris store</a>
-    <!--Add badge showing the number of items in the card, and set its color.-->
-    <mat-icon
-        [matBadge]="1"
-        matBadgeColor="warn"
-    >shopping_cart</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <!--Add badge showing the number of items in the card, and set its color.-->
+        <mat-icon
+                [matBadge]="1"
+                matBadgeColor="warn"
+        >shopping_cart</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <!--Container div for the menu-->
+        <div class="p-3 divide-y divide-solid">
+            <!--Header div containing the number of items and the link to the cart-->
+            <div class="pb-3 flex justify-between">
+                <span class="mr-16">1 Items</span>
+                <a routerLink="cart">View Cart</a>
+            </div>
+
+            <!--Div containing the items in the cart-->
+            <div class="py-3">
+                <!--Separate div for each item-->
+                <div class="flex justify-between font-light mb-2">
+                    Keyboard x 1
+                    <span class="font-bold">{{ '150' | currency:'RON' }}</span>
+                </div>
+                <div class="flex justify-between font-light mb-2">
+                    Keyboard x 1
+                    <span class="font-bold">{{ '150' | currency:'RON' }}</span>
+                </div>
+                <div class="flex justify-between font-light mb-2">
+                    Keyboard x 1
+                    <span class="font-bold">{{ '150' | currency:'RON' }}</span>
+                </div>
+            </div>
+
+            <!--Div containing the total price section-->
+            <div class="flex justify-between py-3 font-light">
+                Total:
+                <span class="font-bold">{{'450' | currency: "RON"}}</span>
+            </div>
+
+            <!--Div containing the buttons-->
+            <div class="pt-3 flex justify-between">
+                <!--Remove everything from the cart button-->
+                <button class="bg-rose-600 text-white rounded-full w-9 h-9">
+                    <mat-icon>remove_shopping_cart</mat-icon>
+                </button>
+
+                <!--Go to checkout button-->
+                <button routerLink="cart"
+                        class="bg-green-600 text-white rounded-full w-9 h-9">
+                    <mat-icon>shopping_cart</mat-icon>
+                </button>
+            </div>
+
+        </div>
+    </mat-menu>
 </mat-toolbar>
