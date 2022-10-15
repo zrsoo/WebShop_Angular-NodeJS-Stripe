@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // 1 column -> row height = 400
 // 3 columns -> row height = 335
 // 4 columns -> row height = 350
-const ROW_HEIGHT : {[id: number]: number} = {1: 400, 3 : 350, 4: 335};
+const ROW_HEIGHT : {[id: number]: number} = {1: 330, 3 : 350, 4: 350};
 
 @Component({
   selector: 'app-home',
