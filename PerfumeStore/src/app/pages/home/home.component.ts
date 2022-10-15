@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   columns = 3;
+  category: string | undefined;
 
   constructor() { }
 
@@ -15,5 +16,9 @@ export class HomeComponent implements OnInit {
 
   onColumnsCountChange(columnsNumber : number) : void {
     this.columns = columnsNumber;
+  }
+
+  onShowCategory(newCategory: string) : void {
+    this.category = newCategory;
   }
 }
