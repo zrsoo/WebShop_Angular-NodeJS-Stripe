@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsHeaderComponent implements OnInit {
 
+  sort = 'descending';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSortUpdated(newSort : string) : void {
+    this.sort = newSort;
   }
 
 }
