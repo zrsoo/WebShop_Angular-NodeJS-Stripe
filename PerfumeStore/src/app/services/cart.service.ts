@@ -37,8 +37,6 @@ export class CartService {
     // Second arg = text on button
     // Third arg = duration (in miliseconds)
     this._snackBar.open('1 item added to cart', 'Ok', {duration: 3000});
-
-    // console.log(this.cart.value); TO DELETE
   }
 
   getTotal(items : Array<CartItem>) : number {
@@ -49,7 +47,11 @@ export class CartService {
   clearCart() : void {
     this.cart.next({ items: [] });
     this._snackBar.open('Cart has been cleared', 'Ok', {duration: 3000});
+  }
 
-    // console.log(this.cart.value); TO DELETE
+  removeItemById(id: number): void {
+    const filteredItems = this.cart.value.items.filter((item) => (item.id != id));
+    this.cart.next({ items : filteredItems });
+    this._snackBar.open('Removed 1 item', 'Ok', {duration: 3000});
   }
 }
