@@ -19,37 +19,7 @@ class="min-h-full max-w-7xl mx-auto border-x"
             <!--Each tile contains a product box component-->
             <mat-grid-tile>
                 <!--If we have one column per row, set fullWidthMode in app-product-box to 1-->
-                <app-product-box class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <!--If we have one column per row, set fullWidthMode in app-product-box to 1-->
-                <app-product-box class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <!--If we have one column per row, set fullWidthMode in app-product-box to 1-->
-                <app-product-box class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <!--If we have one column per row, set fullWidthMode in app-product-box to 1-->
-                <app-product-box class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <!--If we have one column per row, set fullWidthMode in app-product-box to 1-->
-                <app-product-box class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <!--If we have one column per row, set fullWidthMode in app-product-box to 1-->
-                <app-product-box class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <!--If we have one column per row, set fullWidthMode in app-product-box to 1-->
-                <app-product-box class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
+                <app-product-box (addToCart)="onAddToCart($event)" class="w-full" [fullWidthMode]="columns === 1"></app-product-box>
             </mat-grid-tile>
         </mat-grid-list>
     </mat-drawer-content>
