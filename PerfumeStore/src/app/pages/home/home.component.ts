@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getProducts(): void {
     // Prevent memory leaks
-    this.productSubscription = this.storeService.getAllProducts(this.count, this.sort)
+    this.productSubscription = this.storeService.getAllProducts(this.count, this.sort, this.category)
         .subscribe((products) => this.products = products);
   }
 
@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onShowCategory(newCategory: string) : void {
     this.category = newCategory;
+    this.getProducts()
   }
 
   onAddToCart(product: Product) : void {

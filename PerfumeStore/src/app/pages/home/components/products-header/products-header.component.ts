@@ -13,8 +13,8 @@ export class ProductsHeaderComponent implements OnInit {
   sort = 'descending';
   itemsShowCount = 12;
 
-  @Output() sortEmitter = new EventEmitter<string>();
-  @Output() itemsShowCountEmitter = new EventEmitter<string>();
+  @Output() sortChange = new EventEmitter<string>();
+  @Output() itemsShowCountChange = new EventEmitter<string>();
 
   constructor() { }
 
@@ -25,14 +25,14 @@ export class ProductsHeaderComponent implements OnInit {
     this.sort = newSort;
 
     if(this.sort == 'ascending')
-      this.sortEmitter.emit('asc');
+      this.sortChange.emit('asc');
     else
-      this.sortEmitter.emit('desc');
+      this.sortChange.emit('desc');
   }
 
   onItemsUpdated(count : number) : void {
     this.itemsShowCount = count;
-    this.itemsShowCountEmitter.emit(this.itemsShowCount.toString());
+    this.itemsShowCountChange.emit(this.itemsShowCount.toString());
   }
 
   onColumnsUpdated(columnsNumber : number) : void {

@@ -12,7 +12,9 @@ class="min-h-full max-w-7xl mx-auto border-x"
 
     <!--Container of the products header and products-->
     <mat-drawer-content class="p-6">
-        <app-products-header (columnsCountChange)="onColumnsCountChange($event)"></app-products-header>
+        <app-products-header    (columnsCountChange)="onColumnsCountChange($event)"
+                                (sortChange)="changeSort($event)"
+                                (itemsShowCountChange)="changeCount($event)"></app-products-header>
 
         <!--List of products-->
         <mat-grid-list gutterSize="16" [cols]="columns" [rowHeight]="rowHeight">
