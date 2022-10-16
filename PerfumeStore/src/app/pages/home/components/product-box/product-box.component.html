@@ -1,28 +1,28 @@
 <!--Card containing product info-->
 <!--Apply text-center only if we are not in fullWidthMode (change layout if we display only one product card per row)-->
 <mat-card [ngClass]="{'text-center': !fullWidthMode}">
-    <div [ngClass]="{'flex': fullWidthMode}">
+    <div *ngIf="product" [ngClass]="{'flex': fullWidthMode}">
         <!--Image of the product-->
         <img class="mb-1 mx-auto h-[200px]"
              [ngClass]="{'h-200px': !fullWidthMode, 'h-[280px]': fullWidthMode}"
-             src="https://via.placeholder.com/150" alt="perfume"/>
+             [src]=product.image alt="perfume"/>
 
         <!--Information about the product-->
         <div class="w-full"
         [ngClass]="{'px-8 flex flex-col justify-between' : fullWidthMode}">
             <div>
-                <h5>Shoes</h5>
+                <h5>{{product.category}}</h5>
 
                 <!--truncate - if text is longer than container, cut text and replace with "..."
                     hover:whitespace-normal - if you hover over the text, show entire text in white-->
-                <p class="truncate hover:whitespace-normal">Sneakers</p>
+                <p class="truncate">{{product.title}}</p>
 
-                <p *ngIf="fullWidthMode">Description text</p>
+                <p *ngIf="fullWidthMode">{{product.description}}</p>
             </div>
 
             <!--Div containing the price and the button to add product to the cart-->
             <div class="flex justify-between">
-                <span class="text-blue-400">{{ '150' | currency: "RON"}}</span>
+                <span class="text-blue-400">{{ product.price | currency: "RON"}}</span>
 
                 <button (click)="onAddToCart()">
                     <mat-icon class="text-gray-600">shopping_cart</mat-icon>

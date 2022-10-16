@@ -11,14 +11,7 @@ export class ProductBoxComponent implements OnInit {
   // of the product to take more space horizontally
   @Input() fullWidthMode = false;
 
-  product: Product | undefined = {
-    id: 1,
-    title: "Nike Air Max 97",
-    price: 250,
-    category: "Shoes",
-    description: "Fliest mfs out there",
-    image: "https://via.placeholder.com/150"
-  }
+  @Input() product: Product | undefined;
 
   @Output() addToCart = new EventEmitter<Product>();
 
