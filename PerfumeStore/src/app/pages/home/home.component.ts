@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   columns = 3;
   category: string | undefined;
-  rowHeight=  ROW_HEIGHT[this.columns];
+  rowHeight = ROW_HEIGHT[this.columns];
 
   products: Array<Product> | undefined;
   sort: string = 'desc';
@@ -36,6 +36,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Prevent memory leaks
     this.productSubscription = this.storeService.getAllProducts(this.count, this.sort)
         .subscribe((products) => this.products = products);
+  }
+
+  changeSort(newSort: string): void {
+    this.sort = newSort;
+    this.getProducts();
+  }
+
+  changeCount(newCount: string) : void {
+    this.count = newCount;
+    this.getProducts();
   }
 
   onColumnsCountChange(columnsNumber : number) : void {
