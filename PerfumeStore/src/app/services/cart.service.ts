@@ -54,4 +54,33 @@ export class CartService {
     this.cart.next({ items : filteredItems });
     this._snackBar.open('Removed 1 item', 'Ok', {duration: 3000});
   }
+
+  incrementQuantityById(id: number): void {
+    this.cart.value.items.forEach(item => {
+      if(item.id == id)
+        item.quantity++;
+    });
+
+    this.cart.next({ items: this.cart.value.items });
+  }
+
+  decrementQuantityById(id: number): void {
+    const cartItems = this.cart.value.items;
+
+    cartItems.forEach((item, index) => {
+      if(item.id == id) {
+        if (item.quantity == 1)
+        {
+          cartItems.splice(index, 1);
+          this._snackBar.open('Removed 1 item', 'Ok', {duration: 3000});
+        }
+        else {
+          item.quantity--;
+          this._snackBar.open('Decremented 1 item', 'Ok', {duration: 3000});
+        }
+      }
+    });
+
+    this.cart.next({ items: cartItems });
+  }
 }

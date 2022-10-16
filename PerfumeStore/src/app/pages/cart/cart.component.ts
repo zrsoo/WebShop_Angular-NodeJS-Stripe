@@ -53,4 +53,12 @@ export class CartComponent implements OnInit {
   onRemoveItem(cartItem: CartItem) {
       this._cartService.removeItemById(cartItem.id);
   }
+
+  onIncrementQuantity(cartItem: CartItem) {
+      this._cartService.incrementQuantityById(cartItem.id);
+  }
+
+  onDecrementQuantity(cartItem: CartItem) {
+      this._cartService.decrementQuantityById(cartItem.id);
+  }
 }
