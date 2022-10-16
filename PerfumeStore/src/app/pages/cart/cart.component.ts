@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Cart, CartItem} from "../../models/cart.model";
 import {CartService} from "../../services/cart.service";
 
@@ -8,45 +8,7 @@ import {CartService} from "../../services/cart.service";
 })
 export class CartComponent implements OnInit {
 
-  cart: Cart = {items: [
-      {
-      id: 1,
-      product: 'https://via.placeholder.com/150',
-      name: 'Nike Air 999',
-      price: 1000000,
-      quantity: 2
-      },
-      {
-        id: 2,
-        product: 'https://via.placeholder.com/150',
-        name: 'Calbin Klein Jmek',
-        price: 100000000,
-        quantity: 1
-      },
-      {
-        id: 3,
-        product: 'https://via.placeholder.com/150',
-        name: 'Adidas Muye',
-        price: 100002,
-        quantity: 2
-      },
-      {
-        id: 4,
-        product: 'https://via.placeholder.com/150',
-        name: 'Nike Air 99',
-        price: 1000,
-        quantity: 5
-      },
-      {
-        id: 5,
-        product: 'https://via.placeholder.com/150',
-        name: 'Ceas No Fake',
-        price: 1000432400,
-        quantity: 1
-      }
-    ]};
-
-  dataSource: Array<CartItem> = [];
+  private _cart: Cart = { items: [] };
 
   displayedColumns : Array<string> = [
       'product',
@@ -57,10 +19,23 @@ export class CartComponent implements OnInit {
       'action'
   ];
 
+  @Input()
+  get cart()
+  {
+      return this._cart;
+  }
+
+  set cart(cart: Cart)
+  {
+      this._cart = cart;
+  }
+
   constructor(private _cartService: CartService) { }
 
   ngOnInit(): void {
-    this.dataSource = this.cart.items;
+    this._cartService.cart.subscribe((_cart) => {
+        this._cart = _cart;
+    });
   }
 
   getTotal(items : Array<CartItem>) : number {
@@ -69,5 +44,9 @@ export class CartComponent implements OnInit {
 
   getTotalForProduct(item : CartItem) : number {
       return item.price * item.quantity;
+  }
+
+  onClearCart() : void {
+      this._cartService.clearCart();
   }
 }

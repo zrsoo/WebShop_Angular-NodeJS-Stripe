@@ -1,7 +1,7 @@
 <!--Create material table that displays all information necessary for user before actually buying the products-->
 <!--Wrapper-->
 <mat-card *ngIf="cart.items.length" class="max-w-7xl mx-auto">
-    <table mat-table [dataSource]="dataSource"
+    <table mat-table [dataSource]="cart.items"
            class="mat-elevation-z8 w-full">
         <!--Container of header, product rows and footer, stands for ONE column, so make one for each column-->
         <ng-container matColumnDef="product">
@@ -71,7 +71,7 @@
         <ng-container matColumnDef="action">
             <!--Header of the table-->
             <th mat-header-cell *matHeaderCellDef>
-                <button mat-raised-button color="warn" class="float-right">
+                <button (click)="onClearCart()" mat-raised-button color="warn" class="float-right">
                     Clear All
                 </button>
             </th>
